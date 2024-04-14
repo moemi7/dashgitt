@@ -5,8 +5,12 @@
 //import Filter from "./Filter";
 
 //import { SafeUser } from "@/types";
+import StudentCreateForm from '@/pages/leads/components/student-forms/student-create-form';
+//import { Modal } from '@/components/ui/modal';
+//import PopupModal from '@/components/shared/popup-modal';
+import Empty from './empty';
+import PopupModal from '@/components/shared/popup-modal';
 
-//import { useAppDispatch } from "@/libs/redux/hooks";
 //import { onOpen as onInvoiceOpen } from "@/libs/redux/features/invoice-slice";
 //import { onOpen as onLoginModalOpen } from "@/libs/redux/features/modals/login-modal-slice";
 
@@ -16,12 +20,11 @@
 //}
 
 const HeaderControls: React.FC = () => {
-  //const dispatch = useAppDispatch();
 
-  //const createNewInvoice = useCallback(() => {
-   // if (!currentUser) {
- //     return dispatch(onLoginModalOpen());
- //   }
+  const createNewInvoice = () => {
+      <Empty/>
+
+  }
 
 //    dispatch(onInvoiceOpen());
   //}, [currentUser, dispatch]);
@@ -42,19 +45,32 @@ const HeaderControls: React.FC = () => {
       <div className="flex items-center gap-6 sm:gap-10">
         Filter 
         <button
-    
+            onClick={createNewInvoice}
           className="flex gap-2 sm:gap-4 items-center p-1.5 pr-3 sm:p-2 sm:pr-4 text-xs font-bold capitalize rounded-full transition text-white bg-[#7C5DFA] hover:bg-[#9277FF]"
         >
-          <span className="p-2.5 bg-white rounded-full">
+          <span className="p-2.5 bg-white rounded-full text-black">
             Plus 
           </span>
           <div>
-            New <span className="hidden sm:inline">Invoice</span>
+            Nieuwe <span className="hidden sm:inline">Factuur</span>
           </div>
         </button>
+        <PopupModal
+          renderModal={(onClose) => <StudentCreateForm modalClose={onClose} />}
+        />
       </div>
+
     </div>
   );
 };
 
 export default HeaderControls;
+
+//const dispatch = useAppDispatch();
+
+//const createNewInvoice = useCallback(() => {
+ // if (!currentUser) {
+ //   return dispatch(onLoginModalOpen());
+ // } 
+
+ //onClick={createNewInvoice} 45
