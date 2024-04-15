@@ -13,7 +13,7 @@ export default function landingspage() {
         Configureer hier je offerte pagina!
       
       </h2>
-      <iframe className={"full-width"} src="https://form-builder-2mfzss9nu-mohamed-taouils-projects.vercel.app" width="1000" height="500"></iframe>
+      <iframe className={"full-width"} src="https://form-builder-two-delta.vercel.app" width="1000" height="500"></iframe>
 
       <div>
       <div>
