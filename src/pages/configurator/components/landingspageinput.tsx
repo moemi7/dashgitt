@@ -26,6 +26,7 @@ const Landingspageinput: React.FC = ({
   const router = useRouter();
   return (
     <div className="self-center flex-1 w-full overflow-y-auto">
+      
       <div className="flex flex-col items-center justify-center">
         <div className="mb-16 mt-6 w-[220px] sm:w-[240px]">
         </div>
@@ -36,7 +37,7 @@ const Landingspageinput: React.FC = ({
           Checklist
         </p>
         <div>
-        <Input className="h-28 w-40" />
+        
 
         </div>
         

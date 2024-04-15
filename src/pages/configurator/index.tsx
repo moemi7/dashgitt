@@ -5,25 +5,19 @@ import  Landingspageinput from './components/landingspageinput';
 
 export default function landingspage() {
   const router = useRouter();
-
+//absolute left-1/2 top-1/2 mb-16 -translate-x-1/2 -translate-y-1/2
   return (
-    <div className="absolute left-1/2 top-1/2 mb-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center">
+    <div className=" items-center justify-center text-center">
       
-      <span className="bg-gradient-to-b from-foreground to-transparent bg-clip-text text-[10rem] font-extrabold leading-none text-transparent">
-        Maak sales!
-      </span>
       <h2 className="font-heading my-2 text-2xl font-bold">
-        Vraag een nieuwe op maat gemaakte sales landing page aan!
+        Configureer hier je offerte pagina!
+      
       </h2>
-      <p>
-        Vul hier zo uitgebreid mogelijk info over de landing page en gebruik de checklist om alles af te vinken.
-        Z.s.m. mogelijk is uw landing page gehost en ready!
+      <iframe className={"full-width"} src="https://form-builder-2mfzss9nu-mohamed-taouils-projects.vercel.app" width="1000" height="500"></iframe>
 
-      </p>
       <div>
       <div>
-        <Landingspageinput/>
-
+    
 
 
       </div>
