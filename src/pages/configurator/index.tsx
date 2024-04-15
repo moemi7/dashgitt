@@ -1,6 +1,6 @@
 import { useRouter } from '@/routes/hooks';
 import { Button } from '@/components/ui/button';
-import  Landingspageinput from './components/landingspageinput';
+//import  Landingspageinput from './components/landingspageinput';
 
 
 export default function landingspage() {
