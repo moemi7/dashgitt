@@ -10,6 +10,7 @@ const DashboardPage = lazy(() => import('@/pages/dashboard'));
 //const StudentPage = lazy(() => import('@/pages/students'));
 
 const FactuurPage = lazy(() => import('@/pages/facturen'));
+const KalenderPage = lazy(() => import('@/pages/kalender'));
 const LeadsPage = lazy(() => import('@/pages/leads'));
 const StudentDetailPage = lazy(() => import('@/pages/leads/StudentDetailPage'));
 const ConfiguratorPage = lazy(() => import('@/pages/configurator'));
@@ -17,7 +18,6 @@ const OffertesPage = lazy(() => import('@/pages/offertes'));
 //const DashboardPage = lazy(() => import('@/pages/dashboard'));
 //const StudentPage = lazy(() => import('@/pages/students'));
 //const StudentDetailPage = lazy(() => import('@/pages/students/StudentDetailPage')
-
 
 // ----------------------------------------------------------------------
 
@@ -48,18 +48,19 @@ export default function AppRouter() {
         {
           path: 'factuur',
           element: <FactuurPage />
-        }
-        ,
+        },
+        {
+          path: 'kalender',
+          element: <KalenderPage />
+        },
         {
           path: 'offertes',
           element: <OffertesPage />
-        }
-        ,
+        },
         {
           path: 'leads',
           element: <LeadsPage />
-        }
-        ,
+        },
         {
           path: 'configurator',
           element: <ConfiguratorPage />

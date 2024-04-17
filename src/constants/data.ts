@@ -20,6 +20,12 @@ export const navItems: NavItem[] = [
     label: 'Leads'
   },
   {
+    title: 'Kalender',
+    href: '/kalender',
+    icon: 'user',
+    label: 'Kalender'
+  },
+  {
     title: 'Offertes',
     href: '/offertes',
     icon: 'user',

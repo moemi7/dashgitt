@@ -1,4 +1,5 @@
 import { Icons } from '@/components/ui/icons';
+//import { Invoice, User } from "@prisma/client";
 
 export interface NavItem {
   title: string;
@@ -30,3 +31,22 @@ export interface FooterItem {
 export type MainNavItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;
+
+/*export type SafeInvoice = Omit<
+  Invoice,
+  "invoiceDate" | "createdAt" | "updatedAt"
+> & {
+  invoiceDate: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SafeUser = Omit<
+  User,
+  "createdAt" | "updatedAt" | "emailVerified"
+> & {
+  createdAt: string;
+  updatedAt: string;
+  emailVerified: string | null;
+};
+*/
