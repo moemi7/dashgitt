@@ -3,13 +3,12 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import { google } from 'googleapis';
-import { calendar_v3 } from 'googleapis/build/src/apis/calendar/v3';
 
 interface Event {
   id: string;
-  summary: string;
-  start: { dateTime: string };
-  end: { dateTime: string };
+  title: string;
+  start: Date;
+  end: Date;
 }
 
 const CalendarComponent = () => {
@@ -21,9 +20,10 @@ const CalendarComponent = () => {
 
   const fetchEventsFromGoogleCalendar = async () => {
     const auth = new google.auth.OAuth2({
-      clientId: 'YOUR_CLIENT_ID',
-      clientSecret: 'YOUR_CLIENT_SECRET',
-      redirectUri: 'YOUR_REDIRECT_URI'
+      clientId:
+        '499834506345-b7773hqrojqehalohp6f287n1e949bpj.apps.googleusercontent.com',
+      clientSecret: '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 ',
+      redirectUri: 'https://dashgitt.vercel.app'
     });
 
     // Set access token obtained after authentication
@@ -47,14 +47,23 @@ const CalendarComponent = () => {
       });
 
       if (response.data.items) {
-        const eventsData = response.data.items.map(
-          (event: calendar_v3.Schema$Event) => ({
-            id: event.id!,
-            summary: event.summary!,
-            start: new Date(event.start!.dateTime!),
-            end: new Date(event.end!.dateTime!)
+        const eventsData = response.data.items
+          .map((event) => {
+            const start = event.start?.dateTime;
+            const end = event.end?.dateTime;
+            if (start && end) {
+              return {
+                id: event.id!,
+                title: event.summary!,
+                start: new Date(start),
+                end: new Date(end)
+              };
+            } else {
+              // Handle case where start or end is undefined
+              return null;
+            }
           })
-        );
+          .filter(Boolean) as Event[];
 
         setEvents(eventsData);
       }
