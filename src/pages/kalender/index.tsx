@@ -1,7 +1,7 @@
 import { useRouter } from '@/routes/hooks';
 import { Button } from '@/components/ui/button';
 //import  Empty from './components/empty';
-import Calendar from '../../components/extra/Kalender';
+import Calendarg from '../../components/extra/calendarg';
 
 export default function NotFound() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function NotFound() {
       <p></p>
       <div>
         <div>
-          <Calendar />
+          <Calendarg />
         </div>
 
         <div className="mt-8 flex justify-center gap-2">
