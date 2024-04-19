@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import { google } from 'googleapis';
+import { calendar_v3 } from 'googleapis/build/src/apis/calendar/v3';
 
-const Calendarg = () => {
-  const [events, setEvents] = useState([]);
+interface Event {
+  id: string;
+  summary: string;
+  start: { dateTime: string };
+  end: { dateTime: string };
+}
+
+const CalendarComponent = () => {
+  const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
     fetchEventsFromGoogleCalendar();
@@ -13,10 +21,9 @@ const Calendarg = () => {
 
   const fetchEventsFromGoogleCalendar = async () => {
     const auth = new google.auth.OAuth2({
-      clientId:
-        '499834506345-b7773hqrojqehalohp6f287n1e949bpj.apps.googleusercontent.com',
-      clientSecret: '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',
-      redirectUri: 'dashgitt.vercel.app'
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+      redirectUri: 'YOUR_REDIRECT_URI'
     });
 
     // Set access token obtained after authentication
@@ -39,14 +46,18 @@ const Calendarg = () => {
         orderBy: 'startTime'
       });
 
-      const eventsData = response.data.items.map((event) => ({
-        id: event.id,
-        title: event.summary,
-        start: new Date(event.start.dateTime),
-        end: new Date(event.end.dateTime)
-      }));
+      if (response.data.items) {
+        const eventsData = response.data.items.map(
+          (event: calendar_v3.Schema$Event) => ({
+            id: event.id!,
+            summary: event.summary!,
+            start: new Date(event.start!.dateTime!),
+            end: new Date(event.end!.dateTime!)
+          })
+        );
 
-      setEvents(eventsData);
+        setEvents(eventsData);
+      }
     } catch (error) {
       console.error('Error fetching events:', error);
     }
@@ -67,4 +78,4 @@ const Calendarg = () => {
   );
 };
 
-export default Calendarg;
+export default CalendarComponent;
