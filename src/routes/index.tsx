@@ -8,9 +8,8 @@ const DashboardLayout = lazy(
 const SignInPage = lazy(() => import('@/pages/auth/signin'));
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
 //const StudentPage = lazy(() => import('@/pages/students'));
-
-const FactuurPage = lazy(() => import('@/pages/facturen'));
 const KalenderPage = lazy(() => import('@/pages/kalender'));
+const FactuurPage = lazy(() => import('@/pages/facturen'));
 const LeadsPage = lazy(() => import('@/pages/leads'));
 const StudentDetailPage = lazy(() => import('@/pages/leads/StudentDetailPage'));
 const ConfiguratorPage = lazy(() => import('@/pages/configurator'));
@@ -78,11 +77,11 @@ export default function AppRouter() {
     {
       path: '/404',
       element: <NotFound />
-    },
-    {
-      path: '*',
-      element: <Navigate to="/404" replace />
-    }
+    } //,
+    //{
+    //   path: '*',
+    //  element: <Navigate to="/404" replace />
+    // }
   ];
 
   const routes = useRoutes([...dashboardRoutes, ...publicRoutes]);

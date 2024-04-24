@@ -2,22 +2,19 @@ import DataTable from '@/components/shared/data-table';
 import { columns } from './columns';
 import StudentTableActions from './student-table-action';
 
-type TStudentsTableProps = {
-  users: any;
+type LeadsTableProps = {
+  leads: any;
   page: number;
-  totalUsers: number;
+  totalLeads: number;
   pageCount: number;
 };
 
-export default function StudentsTable({
-  users,
-  pageCount
-}: TStudentsTableProps) {
+export default function LeadsTable({ leads, pageCount }: LeadsTableProps) {
   return (
     <>
       <StudentTableActions />
-      {users && (
-        <DataTable columns={columns} data={users} pageCount={pageCount} />
+      {leads && (
+        <DataTable columns={columns} data={leads} pageCount={pageCount} />
       )}
     </>
   );

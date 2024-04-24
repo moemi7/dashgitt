@@ -1,6 +1,5 @@
-import PageHead from '@/components/shared/page-head';
-import { useGetStudents } from './queries/queries';
-import StudentsTable from './components/students-table';
+import { getLeads } from './queries/queries';
+import LeadsTable from './components/lead-table';
 import { useSearchParams } from 'react-router-dom';
 import { DataTableSkeleton } from '@/components/shared/data-table-skeleton';
 
@@ -10,12 +9,14 @@ export default function StudentPage() {
   const pageLimit = Number(searchParams.get('limit') || 10);
   const country = searchParams.get('search') || null;
   const offset = (page - 1) * pageLimit;
-  const { data, isLoading } = useGetStudents(offset, pageLimit, country);
+  //const { data, isLoading } = useGetStudents(offset, pageLimit, country);
+  const data = getLeads();
+  console.log(data);
   const users = data?.users;
   const totalUsers = data?.total_users; //1000
   const pageCount = Math.ceil(totalUsers / pageLimit);
 
-  if (isLoading) {
+  if (data) {
     return (
       <div className="p-5">
         <DataTableSkeleton
@@ -29,8 +30,7 @@ export default function StudentPage() {
 
   return (
     <div className="p-5">
-      <PageHead title="Student Management | App" />
-      <StudentsTable
+      <LeadsTable
         users={users}
         page={page}
         totalUsers={totalUsers}

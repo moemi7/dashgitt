@@ -1,4 +1,5 @@
-import axios from 'axios';
+//import axios from 'axios';
+//import prisma from '../../prisma/prisma';
 // ---------------------------- Student API ------------------------------------------------- //
 // export async function resendEmail(email: string) {
 //     try {
@@ -10,7 +11,7 @@ import axios from 'axios';
 //     }
 // }
 
-export async function getStudents(
+/*export async function getStudents(
   offset: number,
   pageLimit: number,
   country: string
@@ -26,3 +27,4 @@ export async function getStudents(
     return error;
   }
 }
+*/

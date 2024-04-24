@@ -22,7 +22,7 @@ const CalendarComponent = () => {
     const auth = new google.auth.OAuth2({
       clientId:
         '499834506345-b7773hqrojqehalohp6f287n1e949bpj.apps.googleusercontent.com',
-      clientSecret: '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 ',
+      clientSecret: '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',
       redirectUri: 'https://dashgitt.vercel.app'
     });
 

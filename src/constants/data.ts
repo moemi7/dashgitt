@@ -173,3 +173,12 @@ export type Employee = {
   job: string;
   profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
 };
+/* 
+export type Offertes = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  longitude?: number; // Optional field
+ 
+};*/

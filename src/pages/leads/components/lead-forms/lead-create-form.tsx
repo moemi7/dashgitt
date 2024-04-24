@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 const maxFileSize = 1 * 1024 * 1024 * 1024;
-const studentFormSchema = z
+const leadFormSchema = z
   .object({
     firstname: z.string().min(1, { message: 'firstname is required' }),
     lastname: z.string().min(1, { message: 'lastname is required' }),
@@ -44,15 +44,15 @@ const studentFormSchema = z
     path: ['confirmPassword']
   });
 
-type StudentFormSchemaType = z.infer<typeof studentFormSchema>;
+type leadFormSchemaType = z.infer<typeof leadFormSchema>;
 
-const StudentCreateForm = ({ modalClose }: { modalClose: () => void }) => {
-  const form = useForm<StudentFormSchemaType>({
-    resolver: zodResolver(studentFormSchema),
+const LeadCreateForm = ({ modalClose }: { modalClose: () => void }) => {
+  const form = useForm<leadFormSchemaType>({
+    resolver: zodResolver(leadFormSchema),
     defaultValues: {}
   });
 
-  const onSubmit = (values: StudentFormSchemaType) => {
+  const onSubmit = (values: leadFormSchemaType) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
@@ -239,4 +239,4 @@ const StudentCreateForm = ({ modalClose }: { modalClose: () => void }) => {
   );
 };
 
-export default StudentCreateForm;
+export default LeadCreateForm;

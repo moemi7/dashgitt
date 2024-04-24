@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model leads {
+  ID             Int
+  NAAM           String   @db.Text
+  DATUM          DateTime @db.Date
+  EMAIL          String   @db.Text
+  BEDRIJF        String   @db.Text
+  TELEFOONNUMMER Int
+
+  @@ignore
+}
+
+model User {
+  id             Int        @id @default(autoincrement())
+  name           String?
+  email          String?    @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  accounts Account[]
+  invoices Invoice[]
+}
+
+model Account {
+  id                Int       @id @default(autoincrement())
+  userId            Int
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Invoice {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+
+  streetFrom    String
+  cityFrom      String
+  postCodeFrom  String
+  countryFrom   String
+
+  clientName    String
+  clientEmail   String
+  streetTo      String
+  cityTo        String
+  postCodeTo    String
+  countryTo     String
+  invoiceDate   DateTime
+  paymentTerm   String     @default("NET1") // or you can create a separate PaymentTerm model
+  description   String
+  total         String
+  status        String     @default("PENDING") // or you can create a separate Status model
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items Item[]
+}
+
+model Item {
+  id        Int     @id @default(autoincrement())
+  invoiceId Int
+
+  name      String
+  quantity  String
+  price     String
+  total     String
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
+
+// Enums are not directly supported in MySQL, you might want to handle them differently in your application logic.
+// If needed, you can create separate tables for Status and PaymentTerm and reference them in your models.
